@@ -1,17 +1,42 @@
 public class Selection_sort {
-    public static int[] SelectionSort(int arr[]){
-        int n=arr.length;
 
-        for(int i=1;i<n;i++){
-            int key=arr[i];
-            int j=i-1;
+    // 🧮 Function to perform Selection Sort
+    public static void selectionSort(int arr[]) {
+        int n = arr.length;
 
-            while(j>=0 && arr[j]>key){
-                arr[j+1]=arr[j];
-                j--;
+        // Outer loop moves boundary of unsorted part
+        for (int i = 0; i < n - 1; i++) {
+            int minIndex = i; // Assume the first unsorted element is smallest
+
+            // Inner loop finds the smallest element in the unsorted part
+            for (int j = i + 1; j < n; j++) {
+                if (arr[j] < arr[minIndex]) {
+                    minIndex = j; // Update index of smallest element
+                }
             }
-            arr[j+1]=key;
+
+            // Swap the found smallest element with the first unsorted element
+            int temp = arr[minIndex];
+            arr[minIndex] = arr[i];
+            arr[i] = temp;
         }
-        return arr;
+    }
+
+    // 🧩 Main function to test Selection Sort
+    public static void main(String[] args) {
+        int arr[] = {5, 3, 8, 4, 2}; // Input array
+
+        System.out.println("Original Array:");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+
+        // Call selection sort function
+        selectionSort(arr);
+
+        System.out.println("\n\nSorted Array (Ascending Order):");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
     }
 }
